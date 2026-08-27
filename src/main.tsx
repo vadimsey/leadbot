@@ -64,16 +64,19 @@ function App() {
 
 function Home({ active, setActive, openCount, leads, onGo }: { active: boolean; setActive: (v: boolean) => void; openCount: number; leads: Lead[]; onGo: (t: Tab) => void }) {
   return <>
-    <div className="eyebrow">Четверг, 27 августа</div>
-    <div className="headline-row"><div><h1>Добрый день, Анна</h1><p>Бот держит диалоги под контролем.</p></div><button className={active ? 'switch is-on' : 'switch'} onClick={() => setActive(!active)} aria-label="Включить бота"><i /></button></div>
-    <section className="status-strip"><span className={active ? 'status-dot' : 'status-dot off'} /><div><strong>{active ? 'Бот на связи' : 'Бот выключен'}</strong><small>{active ? 'Отвечает клиентам в Telegram' : 'Автоответы приостановлены'}</small></div><button onClick={() => onGo('bot')}>Настроить <Icon name="arrow" /></button></section>
+    <section className="hero-panel">
+      <div className="hero-meta"><span>СЕГОДНЯ / 27.08</span><span className={active ? 'live-label' : 'live-label is-paused'}><i />{active ? 'БОТ В ЭФИРЕ' : 'ПАУЗА'}</span></div>
+      <div className="hero-copy"><p className="eyebrow">ВХОДЯЩИЕ ПОД КОНТРОЛЕМ</p><h1>Клиенты<br/><em>не ждут.</em></h1><p>Leadbot берёт первые вопросы на себя — ты подключаешься, когда человек уже готов.</p></div>
+      <div className="hero-signal"><span>●</span><span>●</span><span>●</span><span>●</span><span>●</span><span>●</span><span>●</span><span>●</span><span>●</span><span>●</span><span>●</span><span>●</span></div>
+      <button className={active ? 'hero-toggle on' : 'hero-toggle'} onClick={() => setActive(!active)}><span>{active ? 'Бот активен' : 'Включить бота'}</span><i>{active ? 'II' : '▶'}</i></button>
+    </section>
     <section className="metric-grid">
-      <button className="metric lead-metric" onClick={() => onGo('leads')}><span>Новые заявки</span><strong>{openCount}</strong><small>за последние 7 дней <Icon name="arrow" /></small></button>
-      <div className="metric"><span>Диалогов сегодня</span><strong>18</strong><small className="positive">+38% к прошлой неделе</small></div>
+      <button className="metric lead-metric" onClick={() => onGo('leads')}><span>01 / НОВЫЕ ЗАЯВКИ</span><strong>0{openCount}</strong><small>нужно разобрать <Icon name="arrow" /></small></button>
+      <div className="metric"><span>02 / ДИАЛОГИ</span><strong>18</strong><small className="positive">+38% за эту неделю</small></div>
     </section>
     <section className="section-heading"><div><span className="eyebrow">ПОСЛЕДНИЕ</span><h2>Заявки</h2></div><button onClick={() => onGo('leads')}>Все <Icon name="arrow" /></button></section>
     <div className="list">{leads.slice(0, 3).map(lead => <LeadRow key={lead.id} lead={lead} />)}</div>
-    <section className="tip"><span className="tip-star">✦</span><div><strong>Бот ответил на 86% вопросов</strong><p>Добавьте ответы на частые вопросы — это сделает его точнее.</p></div><button onClick={() => onGo('knowledge')}><Icon name="arrow" /></button></section>
+    <section className="tip"><span className="tip-star">✦</span><div><strong>86% вопросов закрыты без тебя</strong><p>Добавь ещё пару ответов — и бот станет точнее.</p></div><button onClick={() => onGo('knowledge')}><Icon name="arrow" /></button></section>
   </>
 }
 

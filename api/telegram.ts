@@ -22,8 +22,8 @@ const smartReply = (text: string) => {
 }
 
 export default async function handler(req: any, res: any) {
-  if (req.method !== 'POST') return res.status(200).json({ ok: true, service: 'Leadbot Telegram webhook' })
   const token = process.env.TELEGRAM_BOT_TOKEN
+  if (req.method !== 'POST') return res.status(200).json({ ok: true, configured: Boolean(token), botUsername: process.env.TELEGRAM_BOT_USERNAME || null })
   if (!token) return res.status(500).json({ ok: false, error: 'TELEGRAM_BOT_TOKEN is not configured' })
   const secret = process.env.TELEGRAM_WEBHOOK_SECRET
   if (secret && req.headers['x-telegram-bot-api-secret-token'] !== secret) return res.status(401).json({ ok: false })

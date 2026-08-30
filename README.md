@@ -18,3 +18,13 @@ Invoke-RestMethod -Method Post -Uri "https://api.telegram.org/bot$token/setWebho
 ```
 
 The bot responds to `/start`, `/help`, `/status`, `/price`, `/prices`, the start buttons, and common questions about cost or booking. Warm questions are forwarded to `OWNER_TELEGRAM_ID`.
+
+## Commands and avatar
+
+The bot supports `/start`, `/menu`, `/help`, `/status`, `/price`, and `/prices`. To make these commands visible in Telegram, send this request once after setting the token:
+
+```powershell
+Invoke-RestMethod -Method Post -Uri "https://api.telegram.org/bot$token/setMyCommands" -ContentType "application/json" -Body (@{commands=@(@{command='start';description='Начать разговор'},@{command='menu';description='Открыть меню'},@{command='price';description='Узнать стоимость'},@{command='help';description='Что умеет бот'},@{command='status';description='Проверить статус'})} | ConvertTo-Json -Depth 4)
+```
+
+Bot avatar: [`public/leadbot-avatar.svg`](public/leadbot-avatar.svg). Convert it to a 512×512 PNG before uploading it in `@BotFather` → `/mybots` → **Edit Bot** → **Edit Botpic**.

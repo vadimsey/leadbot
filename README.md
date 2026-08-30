@@ -27,4 +27,4 @@ The bot supports `/start`, `/menu`, `/help`, `/status`, `/price`, and `/prices`.
 Invoke-RestMethod -Method Post -Uri "https://api.telegram.org/bot$token/setMyCommands" -ContentType "application/json" -Body (@{commands=@(@{command='start';description='Начать разговор'},@{command='menu';description='Открыть меню'},@{command='price';description='Узнать стоимость'},@{command='help';description='Что умеет бот'},@{command='status';description='Проверить статус'})} | ConvertTo-Json -Depth 4)
 ```
 
-Bot avatar: [`public/leadbot-avatar.svg`](public/leadbot-avatar.svg). Convert it to a 512×512 PNG before uploading it in `@BotFather` → `/mybots` → **Edit Bot** → **Edit Botpic**.
+Bot avatar: [`public/leadbot-avatar.png`](public/leadbot-avatar.png). Upload this 512×512 PNG in `@BotFather` → `/mybots` → **Edit Bot** → **Edit Botpic**.
